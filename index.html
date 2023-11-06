@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Matching Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        let currentCard = null;
+
+        function flipImage(cardId, ogImg, NImg) {
+            const card = document.getElementById(cardId);
+            
+            if (currentCard === null) {
+                // If there's no previously flipped card
+                currentCard = card;
+                currentCard.src = NImg; // Flip the card
+            } else if (currentCard === card) {
+                // If the same card is clicked again, flip it back
+                currentCard.src = ogImg;
+                currentCard = null;
+            } else {
+                // If another card is clicked
+                card.src = NImg; // Flip the new card
+                // Delay a bit to allow the user to see the cards
+                setTimeout(function() {
+                    card.src = ogImg;
+                    currentCard.src = ogImg;
+                    currentCard = null;
+                }, 1000);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="card" id="card1">
+            <img onclick="flipImage('img1', 'blank.jpg', 'test.jpg');" id="img1" src="blank.jpg">
+        </div>
+        <div class="card" id="card2">
+            <img onclick="flipImage('img2', 'blank.jpg', 'test.jpg');" id="img2" src="blank.jpg">
+        </div>
+        <div class="card" id="card3">
+            <img onclick="flipImage('img3', 'blank.jpg', 'test.jpg');" id="img3" src="blank.jpg">
+        </div>
+        <div class="card" id="card4">
+            <img onclick="flipImage('img4', 'blank.jpg', 'test.jpg');" id="img4" src="blank.jpg">
+        </div>
+    </div>
+</body>
+</html>
