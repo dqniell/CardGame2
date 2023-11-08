@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,94 +6,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>The Matching Game</title>
         <link rel="stylesheet" href="style.css" />
-    <script>
-        let moves=0; //tracks the score (total cards flipped)
-        let firstCard;
-        let secondCard;
-        let secondCardFlipped;
-        let userScore;
-        let matchesToWin=8;
-        
+        <script src="script.js"></script>
 
 
-        function initialize(){  
-            started=false;
-            userScore=document.getElementById("score");
-        }
-
-        function startGame(){ //starts game duh
-            started=true;
-            document.getElementById("startButton").disabled=true;
-            secondCardFlipped=false;
-        }
-
-        function flipCard(newPic, frontID){  //flips cards based on how many are already flipped
-            
-            if(!started){
-                startGame();
-            }
-
-            moves++;
-
-            currCard=document.getElementById(frontID);
-            
-            if(secondCardFlipped==true){
-                secondCard=document.getElementById(frontID);
-                secondCard.src=`${newPic}`;
-                if(!(firstCard.src===secondCard.src)){
-                    setTimeout(() => {
-                        firstCard.src="blank.jpg";
-                        secondCard.src="blank.jpg";}
-                        ,700);
-                    secondCardFlipped=false;
-                    score.innerHTML="hello";
-                } 
-                else {
-                    matchesToWin-=2;
-                    secondCardFlipped=false;
-                    if(matchesToWin==0){
-                        //print some kind of result.
-                    }
-                }
-            }
-            else if(secondCardFlipped==false){
-                firstCard=currCard;
-                firstCard.src=`${newPic}`;
-                secondCardFlipped=true; //next card will be recorded as card2;
-                
-            }
-            display();
-        }
-
-        
-
-        function display(){
-            //userScore.innerHTML = "Score: "+moves;
-        }
-
-    </script>
 </head>
 <body onload="initialize();">
-    <div class="container">
-        
+    <div class="header">
+        <h2>The Matching Game </h2>
+    </div>
+    <div class="smallerHeader">
+        <h3>Click any panel to start! Flip pairs of cards to find matching images. Match all the cards to win!</h3>
+        <h3 id="count">Score: &nbsp <span id="scoreValue">0</span></h3>
+        <div class="score">
+            <button id="resetButton">Reset</button>  
+        </div>    
+    </div>
+
+   
+
+
+    <div class="container" id="cardContainer">
+       
         <img onclick="flipCard('interstellar.jpg', 'card1.1');" id="card1.1" src="blank.jpg">
         <img onclick="flipCard('interstellar.jpg', 'card1.2');" id="card1.2" src="blank.jpg">
         <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.1');" id="card2.1"  src="blank.jpg">
         <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.2');"  id="card2.2" src="blank.jpg">
 
+
         <img onclick="flipCard('shutterIsland.jpg', 'card3.1');" id="card3.1" src="blank.jpg">
         <img onclick="flipCard('shutterIsland.jpg', 'card3.2');" id="card3.2" src="blank.jpg">
         <img onclick="flipCard('pacificRim.jpg', 'card4.1');" id="card4.1"  src="blank.jpg">
         <img onclick="flipCard('pacificRim.jpg', 'card4.2');"  id="card4.2" src="blank.jpg">
-       
+
+
         <img onclick="flipCard('bladeRunner.jpg', 'card5.1');" id="card5.1" src="blank.jpg">
         <img onclick="flipCard('bladeRunner.jpg', 'card5.2');" id="card5.2" src="blank.jpg">
         <img onclick="flipCard('gha.jpg', 'card6.1');" id="card6.1"  src="blank.jpg">
         <img onclick="flipCard('gha.jpg', 'card6.2');" id="card6.2" src="blank.jpg">
 
 
-  <button id="startButton">Start</button>
-        <h4 id="score">Score: </h4>
-        </div>
+    </div>
+
+
+    
+
 </body>
 </html>

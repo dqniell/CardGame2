@@ -3,9 +3,42 @@ img{
     height: 200px;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+}
 
 
-button {
+.header {
+    text-align: center;
+    background: #DCEDFF;
+    color: white;
+    font-size: 30px;
+    color:#282A3A; 
+    height: 120px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+
+.smallerHeader {
+    text-align: center;
+    margin-top: 10px;
+    background: #DCEDFF;
+    padding: 10px; 
+    color: black;
+    width: 700px;
+    height: 180px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+#resetButton {
+    display: flex;
     background: #282A3A;
     color: #FFF;
     border-radius: 5px;
@@ -16,14 +49,26 @@ button {
     font-size: 18pt;
 }
 
-
 .container{
     gap: 10px;
-    display:grid;
+    display: grid;
     grid-template-columns: 150px 150px 150px 150px;
-    grid-template-rows:  200px  200px  200px  200px;
+    grid-template-rows:  200px 200px 200px 200px;      
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
 }
 
-#score{
-    
+
+.score { 
+    display: flex;
+    justify-content: center;
 }
+
+
+#count { 
+    display: flex; 
+    justify-content: center;
+}
+
+
