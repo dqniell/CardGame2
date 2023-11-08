@@ -9,11 +9,11 @@
         <link rel="stylesheet" href="style.css" />
     <script>
         let moves=0; //tracks the score (total cards flipped)
-        let cardsflipped=0; //will be used to track how many cards are flipped at a time
         let firstCard;
         let secondCard;
         let secondCardFlipped;
         let userScore;
+        let matchesToWin=8;
         
 
 
@@ -33,40 +33,43 @@
             if(!started){
                 startGame();
             }
-            let cardBack=newPic;
-            cardsflipped++;
+
             moves++;
-            firstCard=document.getElementById(frontID);
-            firstCardSrc=firstCard.src;
+
+            currCard=document.getElementById(frontID);
             
             if(secondCardFlipped==true){
-                // firstCard.src=`${newPic}`;
                 secondCard=document.getElementById(frontID);
-                secondCardID=frontID;
                 secondCard.src=`${newPic}`;
                 if(!(firstCard.src===secondCard.src)){
-                    setTimeout(() => {firstCard.src="blank.jpg";
-                    secondCard.src="blank.jpg";}
-                    ,700);
+                    setTimeout(() => {
+                        firstCard.src="blank.jpg";
+                        secondCard.src="blank.jpg";}
+                        ,700);
                     secondCardFlipped=false;
                     score.innerHTML="hello";
                 } 
                 else {
-                    score.innerHTML="goodbye";
+                    matchesToWin-=2;
+                    secondCardFlipped=false;
+                    if(matchesToWin==0){
+                        //print some kind of result.
+                    }
                 }
             }
             else if(secondCardFlipped==false){
-                secondCardFlipped=true;
+                firstCard=currCard;
                 firstCard.src=`${newPic}`;
-                
+                secondCardFlipped=true; //next card will be recorded as card2;
                 
             }
             display();
         }
 
+        
 
         function display(){
-            userScore.innerHTML = "Score: "+moves;
+            //userScore.innerHTML = "Score: "+moves;
         }
 
     </script>
@@ -74,23 +77,24 @@
 <body onload="initialize();">
     <div class="container">
         
-        <img onclick="flipCard('interstellar.jpg', 'card1.1');" id="card1.1" src="blank.jpg"></div>
-        <img onclick="flipCard('interstellar.jpg', 'card1.2');" id="card1.2" src="blank.jpg"></div>
-        <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.1');" id="card2.1"  src="blank.jpg"></div>
-        <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.2');"  id="card2.2" src="blank.jpg"></div>
+        <img onclick="flipCard('interstellar.jpg', 'card1.1');" id="card1.1" src="blank.jpg">
+        <img onclick="flipCard('interstellar.jpg', 'card1.2');" id="card1.2" src="blank.jpg">
+        <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.1');" id="card2.1"  src="blank.jpg">
+        <img onclick="flipCard('asAboveSoBelow.jpg', 'card2.2');"  id="card2.2" src="blank.jpg">
 
-        <img onclick="flipCard('shutterIsland.jpg', 'card3.1');" id="card3.1" src="blank.jpg"></div>
-        <img onclick="flipCard('shutterIsland.jpg', 'card3.2');" id="card3.2" src="blank.jpg"></div>
-        <img onclick="flipCard('pacificRim.jpg', 'card4.1');" id="card4.1"  src="blank.jpg"></div>
-        <img onclick="flipCard('pacificRim.jpg', 'card4.2');"  id="card4.2" src="blank.jpg"></div>
+        <img onclick="flipCard('shutterIsland.jpg', 'card3.1');" id="card3.1" src="blank.jpg">
+        <img onclick="flipCard('shutterIsland.jpg', 'card3.2');" id="card3.2" src="blank.jpg">
+        <img onclick="flipCard('pacificRim.jpg', 'card4.1');" id="card4.1"  src="blank.jpg">
+        <img onclick="flipCard('pacificRim.jpg', 'card4.2');"  id="card4.2" src="blank.jpg">
        
-        <img onclick="flipCard('bladeRunner.jpg', 'card5.1');" id="card5.1" src="blank.jpg"></div>
-        <img onclick="flipCard('bladeRunner.jpg', 'card5.2');" id="card5.2" src="blank.jpg"></div>
-        <img onclick="flipCard('gha.jpg', 'card6.1');" id="card6.1"  src="blank.jpg"></div>
-        <img onclick="flipCard('gha.jpg', 'card6.2');" id="card6.2" src="blank.jpg"></div>
+        <img onclick="flipCard('bladeRunner.jpg', 'card5.1');" id="card5.1" src="blank.jpg">
+        <img onclick="flipCard('bladeRunner.jpg', 'card5.2');" id="card5.2" src="blank.jpg">
+        <img onclick="flipCard('gha.jpg', 'card6.1');" id="card6.1"  src="blank.jpg">
+        <img onclick="flipCard('gha.jpg', 'card6.2');" id="card6.2" src="blank.jpg">
 
 
   <button id="startButton">Start</button>
         <h4 id="score">Score: </h4>
+        </div>
 </body>
 </html>
